@@ -4,10 +4,13 @@ import axios from 'axios';
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
+const entryDiv = document.querySelector('.cards');
+
 axios 
 .get('https://api.github.com/users/kendra4227')
 .then((res)=>{
-console.log(res);
+//console.log(res);
+entryDiv.append(userCard(res.data));
 })
 .catch((err)=>{
   console.log("Error has occured",err);
@@ -37,7 +40,11 @@ console.log(res);
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['https://api.github.com/users/jiangeyre',
+'https://api.github.com/users/Pytormal',
+'https://api.github.com/users/Veilios',
+'https://api.github.com/users/1professionalusername'
+];
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -61,22 +68,23 @@ const followersArray = [];
 function userCard(obj){
   //created user card
 let card = document.createElement('div');
-card.classList('card');
+card.classList.add('card');
 //created user image
-let userImg = document.createElement('img src');
-userImg.setAttribute("src" , obj.avatar_url );
+let userImg = document.createElement('img');
+userImg.src = obj.avatar_url;
 card.appendChild(userImg);
 // user info
 let info = document.createElement('div');
-info.classList('card-info');
+info.classList.add('card-info');
 card.appendChild(info);
+
 let name = document.createElement('h3');
-name.classList('name');
+name.classList.add('name');
 name.textContent = obj.name;
 info.appendChild(name);
 
 let userName = document.createElement("p");
-userName.classList("username");
+userName.classList.add("username");
 userName.textContent =  obj.login;
 info.appendChild(userName);
 
@@ -85,7 +93,7 @@ location.textContent = obj.location;
 info.appendChild(location);
 
 let profile = document.createElement("p");
-profile.textContent = "Profile:", obj.html_url;
+profile.href =  obj.html_url;
 info.appendChild(profile);
 
 let followers = document.createElement("p");
@@ -102,7 +110,15 @@ info.appendChild(bio);
 
 return card;
 }
-document.querySelector(".cards").appendChild(userCard);
+followersArray.forEach((link) => {
+  axios.get(`${link}`)
+  .then((res) => {
+    entryDiv.append(userCard(res.data))
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+});
 
 /*
   List of LS Instructors Github username's:
