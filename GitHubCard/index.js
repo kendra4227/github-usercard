@@ -97,15 +97,15 @@ profile.href =  obj.html_url;
 info.appendChild(profile);
 
 let followers = document.createElement("p");
-followers.textContent = "Followers:", obj.followers;
+followers.textContent = `"Followers:",${obj.followers}`;
 info.appendChild(followers);
 
 let following = document.createElement("p");
-following.textContent = 'Following:', obj.following;
+following.textContent = `'Following:',${ obj.following}`;
 info.appendChild(following);
 
 let bio = document.createElement("p");
-bio.textContent = "Bio:", obj.bio;
+bio.textContent = `"Bio:", ${obj.bio}`;
 info.appendChild(bio);
 
 return card;
