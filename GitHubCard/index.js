@@ -100,7 +100,10 @@ let bio = document.createElement("p");
 bio.textContent = "Bio:", obj.bio;
 info.appendChild(bio);
 
+return card;
 }
+document.querySelector(".cards").appendChild(userCard);
+
 /*
   List of LS Instructors Github username's:
     tetondan
