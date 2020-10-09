@@ -58,7 +58,49 @@ const followersArray = [];
       </div>
     </div>
 */
+function userCard(obj){
+  //created user card
+let card = document.createElement('div');
+card.classList('card');
+//created user image
+let userImg = document.createElement('img src');
+userImg.setAttribute("src" , obj.avatar_url );
+card.appendChild(userImg);
+// user info
+let info = document.createElement('div');
+info.classList('card-info');
+card.appendChild(info);
+let name = document.createElement('h3');
+name.classList('name');
+name.textContent = obj.name;
+info.appendChild(name);
 
+let userName = document.createElement("p");
+userName.classList("username");
+userName.textContent =  obj.login;
+info.appendChild(userName);
+
+let location = document.createElement("p");
+location.textContent = obj.location;
+info.appendChild(location);
+
+let profile = document.createElement("p");
+profile.textContent = "Profile:", obj.html_url;
+info.appendChild(profile);
+
+let followers = document.createElement("p");
+followers.textContent = "Followers:", obj.followers;
+info.appendChild(followers);
+
+let following = document.createElement("p");
+following.textContent = 'Following:', obj.following;
+info.appendChild(following);
+
+let bio = document.createElement("p");
+bio.textContent = "Bio:", obj.bio;
+info.appendChild(bio);
+
+}
 /*
   List of LS Instructors Github username's:
     tetondan
